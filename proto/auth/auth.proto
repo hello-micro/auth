@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package hello.micro.srv.auth;
+
+service auth {
+	// 小程序登录
+	rpc MiniProgramLogin(MiniProgramLoginRequest) returns(LoginResponse){
+	}
+	// 手机验证码登录
+	rpc PhoneCodeLogin(PhoneCodeLoginRequest) returns(LoginResponse){
+	}
+	// 邮箱验证码登录
+	rpc EmailCodeLogin(EmailCodeLoginRequest) returns(LoginResponse){
+	}
+	// 密码登录 (手机密码.用户名密码.邮箱密码)
+	rpc PasswordLogin(PasswordLoginRequest) returns(LoginResponse){
+	}
+
+	// 验证token是否有效
+	rpc VerifyToken(VerifyTokenRequest) returns(VerifyTokenResponse){
+	}
+	// 刷新token
+	rpc RefreshToken(RefreshTokenRequest) returns(RefreshTokenResponse){
+	}
+}
+
+message MiniProgramLoginRequest{
+	string channel = 1;
+	string code = 2;
+}
+
+message PhoneCodeLoginRequest{
+	string phone = 1;
+	string code = 2;
+}
+
+message EmailCodeLoginRequest{
+	string email = 1;
+	string code = 2;
+}
+
+message PasswordLoginRequest{
+	string channel = 1;
+	string loginName = 2;
+	string password = 3;
+}
+
+message LoginResponse {
+	string token = 1;
+}
+
+message VerifyTokenRequest{
+	string token = 1;
+}
+
+message VerifyTokenResponse{
+	bool valid = 1;
+}
+
+message RefreshTokenRequest{
+	string token = 1;
+}
+
+message RefreshTokenResponse{
+	// valid 原token是否有效
+	bool valid = 1;
+	// token new token
+	string token = 2;
+}
+
+
