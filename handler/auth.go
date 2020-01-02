@@ -10,7 +10,6 @@ import (
 
 type Auth struct{}
 
-
 // VerifyToken 验证token
 func (e *Auth) VerifyToken(ctx context.Context, req *auth.VerifyTokenRequest, rsp *auth.VerifyTokenResponse) error {
 	rsp.Valid = service.VerifyToken(req.Token)

@@ -2,6 +2,11 @@
 
 This is the Auth service
 
+[![Build Status](https://cloud.drone.io/api/badges/hello-micro/auth/status.svg)](https://cloud.drone.io/hello-micro/auth)
+[![LINK](https://img.shields.io/badge/link-Github-%23FF4D5B.svg?style=flat-square)](https://github.com/hello-micro/auth) 
+[![Go Report Card](https://goreportcard.com/badge/github.com/hello-micro/auth)](https://goreportcard.com/report/github.com/hello-micro/auth)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg?style=flat-square)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
 Generated with
 
 ```

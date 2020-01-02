@@ -1,0 +1,235 @@
+---
+kind: pipeline
+type: docker
+name: testing
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: vet
+    image: golang:latest
+    commands:
+      - go vet -v ./...
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: lint
+    image: golang:latest
+    commands:
+      - go get -u github.com/mgechev/revive
+      - revive -config .revive.toml ./... || exit 1
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: test
+    image: golang:latest
+    commands:
+      - go test -v ./...
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: failure notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
+volumes:
+  - name: gopath
+    temp: {}
+
+---
+kind: pipeline
+type: docker
+name: build
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: golang:latest
+    commands:
+      - go build -v -o auth-srv -ldflags "-s -w" main.go
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./auth-srv-upx
+      original_file: ./auth-srv
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: run
+    image: golang:latest
+    commands:
+      - ./auth-srv-upx --help
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: failure notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
+volumes:
+  - name: gopath
+    temp: {}
+
+depends_on:
+  - testing
+
+---
+kind: pipeline
+type: docker
+name: auth-srv
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: golang:latest
+    commands:
+      - go build -v -o auth-srv -ldflags "-s -w" srv/auth-srv/main.go
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./auth-srv-upx
+      original_file: ./auth-srv
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: run
+    image: golang:latest
+    commands:
+      - ./auth-srv-upx --help
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: failure notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
+volumes:
+  - name: gopath
+    temp: {}
+
+depends_on:
+  - testing
+
+---
+kind: pipeline
+type: docker
+name: user-srv
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: build
+    image: golang:latest
+    commands:
+      - go build -v -o user-srv -ldflags "-s -w" srv/user-srv/main.go
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name : upx
+    image: cnbattle/drone-upx
+    settings:
+      level: 9
+      save_file: ./user-srv-upx
+      original_file: ./user-srv
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: run
+    image: golang:latest
+    commands:
+      - ./user-srv-upx --help
+    volumes:
+      - name: gopath
+        path: /go
+
+  - name: failure notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+    when:
+      status: [ failure ]
+
+volumes:
+  - name: gopath
+    temp: {}
+
+depends_on:
+  - testing
+
+---
+kind: pipeline
+type: docker
+name: notifications
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+  - name: notification
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: telegram_token
+      to:
+        from_secret: telegram_user_id
+
+trigger:
+  ref:
+    - refs/heads/master
+    - refs/tags/**
+
+depends_on:
+  - hello-srv
+  - auth-srv
+  - user-srv

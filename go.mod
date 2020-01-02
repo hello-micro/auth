@@ -8,6 +8,6 @@ require (
 	github.com/google/uuid v1.1.1
 	github.com/jinzhu/gorm v1.9.11
 	github.com/micro/go-micro v1.18.0
-	github.com/micro/go-plugins v1.5.1 // indirect
+	github.com/micro/go-plugins v1.5.1
 	github.com/silenceper/wechat v2.0.1+incompatible
 )
