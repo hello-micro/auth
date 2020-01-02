@@ -2,42 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3276beb-89c6-4580-8f96-ec36ac0a291f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/auth.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/generate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/auth.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/config/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/database/init.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/jwt/jwt.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/jwt/jwt_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/models/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/utils/md5.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/utils/md5_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/utils/string.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/utils/string_test.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plugin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto/auth/auth.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto/auth/auth.pb.micro.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto/auth/auth.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/loginorcreate.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/loginservice.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/miniprogram.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/password.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/refreshtoken.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/verifytoken.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/subscriber/auth.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/auth.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
