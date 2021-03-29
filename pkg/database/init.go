@@ -8,9 +8,8 @@ import (
 
 	"github.com/hello-micro/auth/pkg/config"
 
-	"github.com/jinzhu/gorm"
-	// import mysql
-	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
 )
 
 var (
@@ -33,15 +32,18 @@ func Init() {
 			config.GetDefaultEnv("DB_DATABASE", "root"),
 			strings.Replace(config.GetDefaultEnv("APP_TIMEZONE", "Local"), "/", "%2F", -1),
 		)
-		Conn, err = gorm.Open("mysql", dsn)
+		//dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+		Conn, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+		//Conn, err = gorm.Open("mysql", dsn)
 		if err != nil {
 			log.Panicf("init DB err:%v,dsn:%v", err, dsn)
 		}
+		Conn.Debug()
 		// 全局禁用表名复数
-		Conn.SingularTable(true)
+		//Conn.SingularTable(true)
 		//启用Logger，显示详细日志，默认情况下会打印发生的错误
 		//Conn.LogMode(false)
-		Conn.DB().SetMaxIdleConns(10)
-		Conn.DB().SetMaxOpenConns(100)
+		//Conn.DB().SetMaxIdleConns(10)
+		//Conn.DB().SetMaxOpenConns(100)
 	})
 }

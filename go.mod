@@ -1,13 +1,13 @@
 module github.com/hello-micro/auth
 
-go 1.13
+go 1.16
 
 require (
+	github.com/asim/go-micro/v3 v3.5.0
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/golang/protobuf v1.3.2
-	github.com/google/uuid v1.1.1
-	github.com/jinzhu/gorm v1.9.11
-	github.com/micro/go-micro v1.18.0
-	github.com/micro/go-plugins v1.5.1
-	github.com/silenceper/wechat v2.0.1+incompatible
+	github.com/golang/protobuf v1.5.1
+	github.com/google/uuid v1.2.0
+	github.com/silenceper/wechat v1.2.6
+	gorm.io/driver/mysql v1.0.5
+	gorm.io/gorm v1.21.6
 )

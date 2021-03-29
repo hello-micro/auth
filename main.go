@@ -1,9 +1,9 @@
 package main
 
 import (
+	"github.com/asim/go-micro/v3"
+	"github.com/asim/go-micro/v3/util/log"
 	"github.com/hello-micro/auth/handler"
-	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/util/log"
 
 	auth "github.com/hello-micro/auth/proto/auth"
 )
